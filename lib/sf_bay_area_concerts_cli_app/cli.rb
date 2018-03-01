@@ -3,15 +3,20 @@ class CLI
 	def start
 
 		puts "Here are the concerts in the Bay Area by Ape Concerts:"
-		Scraper.new.create_concert
+		Scraper.new.scrape_concert_attributes 
 		display_all_concerts
 
 
-		puts "Which concert would you like more information about? Please enter a number."
-		input = gets.strip.to_i-1
+		puts "Which concert would you like more information about?"
+		input = 0
+		while input == 0
+		  puts "Please enter a number."
+		  input = gets.strip.to_i
+		end
 
 		concert = Concert.all[input]
 		concert.add_additional_attributes
+		display_individual_concert_info(concert)
 
 	end
 
