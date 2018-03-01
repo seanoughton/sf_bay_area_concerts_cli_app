@@ -16,8 +16,11 @@ class Scraper
 			url = entry.css("a")[0]['href']
 			artist_name = entry.css(".show-title").text
 			location = entry.css(".venue-location-name").text
-			date_showtime = "This is a stub for the date"
-			Concert.new_concert_from_index_element(url,artist_name,location,date_showtime)
+			doc = Nokogiri::HTML(open("#{url}"))
+			date_showtime = doc.css(".entry .single-date-show").text
+			#date_showtime = "This is a stub for the date"
+			available = "This is a stub for available"
+			Concert.new_concert_from_index_element(url,artist_name,location,date_showtime,available)
 		end
 	end
  

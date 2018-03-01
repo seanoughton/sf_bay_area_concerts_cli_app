@@ -1,7 +1,18 @@
-#!/usr/bin/env ruby
+class CLI
 
-#this will be the cli controller
+	def start
 
-require_relative "scraper.rb" #will do this here for now, but will move this to the environment file
+		puts "Here are the concerts in the Bay Area by Ape Concerts:"
+		Scraper.new.create_concert
+		display_all_concerts
 
-puts Scraper.new.get_all_concerts #creates a new Scraper instance and calls a scraper instance method on it
+	end
+
+	def display_all_concerts
+		Concert.all.each.with_index(1) do |concert,index|
+			puts "#{index}.  #{concert.artist_name} is playing at #{concert.location} on #{concert.date_showtime}. #{concert.available.upcase}"
+		end
+	end
+
+
+end
