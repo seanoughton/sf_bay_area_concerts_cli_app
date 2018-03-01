@@ -26,6 +26,18 @@ class CLI
 		puts "----------------------------------------------------------------------------------------------------"
 		puts "#{concert.artist_name} will be at #{concert.location} on #{concert.date_showtime}"
 		puts "Tickets are available for #{concert.ticket_price}"
+		
+		puts "----------------------------------------------------------------------------------------------------"
+		puts "Here is some more information about this artist:"
+		puts "You can find out more about this artist here: #{concert.artist_website}" if concert.artist_website
+		puts "You can find this artist's music here: #{concert.where_to_find_music}" if concert.where_to_find_music
+		puts "You can watch music videos here: #{concert.youtube}" if concert.youtube
+		puts "Here are #{concert.artist_name}'s social links:"
+		puts "facebook : #{concert.facebook}" if concert.facebook
+		puts "twitter: #{concert.twitter}" if concert.twitter 
+		puts "instagram: #{concert.instagram}" if concert.instagram 
+		puts "----------------------------------------------------------------------------------------------------"
+		puts ""
 	end
 
 
