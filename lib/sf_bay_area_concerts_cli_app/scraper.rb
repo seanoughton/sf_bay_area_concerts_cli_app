@@ -18,10 +18,15 @@ class Scraper
 			location = concert.css(".entry .venue-location-name").text
 			date_showtime = concert.css(".date-show")[0]['content']
 			soldout = concert.css(".event-data .button.ghost.soldout").text
-			available = "Tickets Available" if soldout != "Sold Out!" else available = "Sold Out!"
+			if soldout != "Sold Out!"
+				available = "Tickets Available"
+			else
+				available = "Sold Out!"
+			end
 			#talks to Concert class, tells it to create a new concert for each of the concerts on the page
 			Concert.new_concert_from_index_element(url,artist_name,location,date_showtime,available)
 		end
+
 	end
 
 

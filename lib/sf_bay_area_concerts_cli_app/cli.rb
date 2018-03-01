@@ -26,6 +26,14 @@ class CLI
 		end
 	end
 
+	def check_y_or_n(input)
+		while (input != "y") && (input != "n")
+			puts "Please enter (y/n)"
+			input = gets.strip.downcase
+		end
+		input
+	end
+
 	def display_individual_concert_info(concert)
 		puts ""
 		puts "----------------------------------------------------------------------------------------------------"
@@ -50,9 +58,9 @@ class CLI
 		puts ""
 
 		if concert.bio 
-			puts "Do you want to read #{concert.artist_name}'s bio (Y/N)?"
+			puts "Do you want to read #{concert.artist_name}'s bio (y/n)?"
 			input = gets.strip.downcase
-			if input == "y"
+			if check_y_or_n(input) == "y"
 				puts ""
 				puts "----------------------------------------------------------------------------------------------------"
 				puts "#{concert.bio}"
@@ -63,7 +71,9 @@ class CLI
 
 		puts "Would you like to see the list of concerts again (y/n)?"
 		input = gets.strip.downcase
-		if input == "y"
+		
+
+		if check_y_or_n(input)== "y"
 			start
 		else
 			puts "Thanks.  Good-bye!"
