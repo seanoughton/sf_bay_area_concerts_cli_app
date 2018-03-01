@@ -14,6 +14,10 @@ class Scraper
 		entries = self.scrape_all_concerts.css(".entry")
 		entries.each do |entry|
 			url = entry.css("a")[0]['href']
+			artist_name = entry.css(".show-title").text
+			location = entry.css(".venue-location-name").text
+			date_showtime = "This is a stub for the date"
+			Concert.new_concert_from_index_element(url,artist_name,location,date_showtime)
 		end
 	end
  
