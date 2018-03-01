@@ -14,7 +14,7 @@ class CLI
 		  input = gets.strip.to_i
 		end
 
-		concert = Concert.all[input]
+		concert = Concert.all[input-1]
 		concert.add_additional_attributes
 		display_individual_concert_info(concert)
 
@@ -51,14 +51,22 @@ class CLI
 
 		if concert.bio 
 			puts "Do you want to read #{concert.artist_name}'s bio (Y/N)?"
-			input = gets.strip.upcase
-			if input == "Y"
+			input = gets.strip.downcase
+			if input == "y"
 				puts ""
 				puts "----------------------------------------------------------------------------------------------------"
 				puts "#{concert.bio}"
 				puts "----------------------------------------------------------------------------------------------------"
 				puts ""
 			end
+		end
+
+		puts "Would you like to see the list of concerts again (y/n)?"
+		input = gets.strip.downcase
+		if input == "y"
+			start
+		else
+			puts "Thanks.  Good-bye!"
 		end
 	end
 
