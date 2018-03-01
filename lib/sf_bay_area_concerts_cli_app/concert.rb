@@ -25,6 +25,14 @@ class Concert
 ##
 	def add_additional_attributes
 		doc = Scraper.scrape_specific_concert(self.url)
+		self.bio = doc.css(".bio p")[0..-1].text
+		self.artist_website = doc.css(".more-information.social-icons #website")[0]['href']
+		self.where_to_find_music = doc.css(".more-information.social-icons #music")[0]['href']
+		self.facebook = doc.css(".more-information.social-icons #facebook")[0]['href']
+		self.twitter = doc.css(".more-information.social-icons #twitter")[0]['href']
+		self.instagram = doc.css(".more-information.social-icons #instagram")[0]['href']
+		self.youtube = doc.css(".more-information.social-icons #youtube")[0]['href']
+		end
 	end
 
 
