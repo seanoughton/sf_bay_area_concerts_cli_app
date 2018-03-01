@@ -11,7 +11,10 @@ class Scraper
 	end
 
 
-
+	def get_all_concerts
+		self.page_retrieval.css("div#ape-event .content-information")
+	end
+	#this is being called by an instance of the Scrape class
 	#create a method that gets all of the concerts from the page
 	#each concert has a class of ape-event, mix detail-information
  
