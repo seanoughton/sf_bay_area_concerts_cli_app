@@ -4,13 +4,13 @@ class Scraper
 	require 'nokogiri'
 	require 'open-uri'
 
-	def page_retrieval #this method gets the nokogiri array of the page
-		doc Nokogiri::HTML(open("http://apeconcerts.com"))
-		puts doc
+		#create a method that uses Nokogiri  and open uri to return the page as a Nokogiri array - http://apeconcerts.com
+
+	def page_retrieval #this method returns the nokogiri array of the page
+		Nokogiri::HTML(open("http://apeconcerts.com"))
 	end
 
-	#create a method that uses Nokogiri  and open uri to return the page as a Nokogiri array - http://apeconcerts.com
-	#going to need to require nokogir and open uri somewhere
+
 
 	#create a method that gets all of the concerts from the page
 	#each concert has a class of ape-event, mix detail-information
