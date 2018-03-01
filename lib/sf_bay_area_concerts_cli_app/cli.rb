@@ -6,13 +6,13 @@ class CLI
 		Scraper.new.create_concert
 		display_all_concerts
 
-#start
+
 		puts "Which concert would you like more information about? Please enter a number."
 		input = gets.strip.to_i-1
 
 		concert = Concert.all[input]
 		concert.add_additional_attributes
-#end
+
 	end
 
 	def display_all_concerts

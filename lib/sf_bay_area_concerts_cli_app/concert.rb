@@ -22,6 +22,10 @@ class Concert
 	def self.all
 		@@all
 	end
+##
+	def add_additional_attributes
+		doc = Scraper.scrape_specific_concert(self.url)
+	end
 
 
 end
