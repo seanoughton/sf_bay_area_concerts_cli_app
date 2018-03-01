@@ -24,7 +24,9 @@ class Scraper
 		end
 	end
  
-
+	def self.scrape_specific_concert(url)
+		doc = Nokogiri::HTML(open("#{url}"))	
+	end
 
 
 
