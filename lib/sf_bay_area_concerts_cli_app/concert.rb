@@ -30,6 +30,8 @@ class Concert
 	def add_additional_attributes
 		doc = Scraper.scrape_specific_concert(self.url)
 
+		self.ticket_price = doc.css(".more-information p").text.match(/\$\d\d\.+\d+/)
+
 		if check_for_nokogiri_object?(doc.css(".bio p"))
 			self.bio = doc.css(".bio p")[0..-1].text
 		end
