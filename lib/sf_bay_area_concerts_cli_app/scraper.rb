@@ -9,20 +9,22 @@ class Scraper
 		self.page_retrieval.css("div#ape-event .content-information")
 	end
 
-
-	def create_concert
-		entries = self.scrape_all_concerts.css(".entry")
-		entries.each do |entry|
-			url = entry.css("a")[0]['href']
-			artist_name = entry.css(".show-title").text
-			location = entry.css(".venue-location-name").text
-			doc = Nokogiri::HTML(open("#{url}"))
-			date_showtime = doc.css(".entry .single-date-show").text
-			#date_showtime = "This is a stub for the date"
-			available = "This is a stub for available"
+	def scrape_concert_attributes
+		concerts = self.scrape_all_concerts #gets all concerts nokogiri objects
+		#for each specific concert grab these attributes
+		concerts.each do |concert|
+			url = concert.css(".entry a")[0]['href']
+			artist_name = concert.css(".entry .show-title").text
+			location = concert.css(".entry .venue-location-name").text
+			date_showtime = concert.css(".date-show")[0]['content']
+			soldout = concert.css(".event-data .button.ghost.soldout").text
+			available = "Tickets Available" if soldout != "Sold Out!" else available = "Sold Out!"
+			#talks to Concert class, tells it to create a new concert for each of the concerts on the page
 			Concert.new_concert_from_index_element(url,artist_name,location,date_showtime,available)
 		end
 	end
+
+
  
 	def self.scrape_specific_concert(url)
 		doc = Nokogiri::HTML(open("#{url}"))	
