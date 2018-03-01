@@ -21,5 +21,12 @@ class CLI
 		end
 	end
 
+	def display_individual_concert_info(concert)
+		puts ""
+		puts "----------------------------------------------------------------------------------------------------"
+		puts "#{concert.artist_name} will be at #{concert.location} on #{concert.date_showtime}"
+		puts "Tickets are available for #{concert.ticket_price}"
+	end
+
 
 end
