@@ -26,7 +26,12 @@ class CLI
 		puts "----------------------------------------------------------------------------------------------------"
 		puts "#{concert.artist_name} will be at #{concert.location} on #{concert.date_showtime}"
 		puts "Tickets are available for #{concert.ticket_price}"
-		
+		if concert.available == "Sold Out!"
+			puts "Tickets are Sold Out!"
+		else
+			puts "Tickets are available starting at #{concert.ticket_price}"
+		end
+
 		puts "----------------------------------------------------------------------------------------------------"
 		puts "Here is some more information about this artist:"
 		puts "You can find out more about this artist here: #{concert.artist_website}" if concert.artist_website
@@ -38,6 +43,18 @@ class CLI
 		puts "instagram: #{concert.instagram}" if concert.instagram 
 		puts "----------------------------------------------------------------------------------------------------"
 		puts ""
+
+		if concert.bio 
+			puts "Do you want to read #{concert.artist_name}'s bio (Y/N)?"
+			input = gets.strip.upcase
+			if input == "Y"
+				puts ""
+				puts "----------------------------------------------------------------------------------------------------"
+				puts "#{concert.bio}"
+				puts "----------------------------------------------------------------------------------------------------"
+				puts ""
+			end
+		end
 	end
 
 
