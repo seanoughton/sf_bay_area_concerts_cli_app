@@ -1,6 +1,9 @@
 #!/usr/bin/env ruby
 
-
+#link to the lib/sf_bay_area_concerts_cli_app
+#this will link this file to the environment file and therefore all of the necessary ruby files and modules
 require_relative "../lib/sf_bay_area_concerts_cli_app"
 
+
+#Creates a new instance of the CLI class and starts the app
 SfBayAreaConcertsCliApp::CLI.new.start

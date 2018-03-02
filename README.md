@@ -1,28 +1,16 @@
 # SfBayAreaConcertsCliApp
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/sf_bay_area_concerts_cli_app`. To experiment with that code, run `bin/console` for an interactive prompt.
+This Ruby Gem provides a CLI to view upcoming concerts in the San Francisco Bay Area.
 
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
-Add this line to your application's Gemfile:
+You can install this gem via `install sf_bay_area_concerts_cli_app`. The `sf_bay_area_concerts` CLI will be installed and you can run `sf_bay_area_concerts` to get a list of upcoming concerts for the San Francisco Bay Area in your command line.
 
-```ruby
-gem 'sf_bay_area_concerts_cli_app'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install sf_bay_area_concerts_cli_app
 
 ## Usage
 
-TODO: Write usage instructions here
+Run: `sf_bay_area_concerts` after installing the gem.
 
 ## Development
 
