@@ -1,4 +1,4 @@
-class Concert
+class SfBayAreaConcertsCliApp::Concert
 
 	attr_accessor :url, :artist_name, :location, :date_showtime, :available, :ticket_price, :bio, :artist_website, :where_to_find_music, :facebook, :twitter, :instagram, :youtube
 
@@ -28,7 +28,7 @@ class Concert
 	end
 ##
 	def add_additional_attributes
-		doc = Scraper.scrape_specific_concert(self.url)
+		doc = SfBayAreaConcertsCliApp:Scraper.scrape_specific_concert(self.url)
 
 		self.ticket_price = doc.css(".more-information p").text.match(/\$\d\d\.+\d+/)
 

@@ -1,4 +1,4 @@
-class Scraper
+class SfBayAreaConcertsCliApp::Scraper
 
 	def page_retrieval #this method returns the nokogiri array of the page
 		Nokogiri::HTML(open("http://apeconcerts.com"))
@@ -24,7 +24,7 @@ class Scraper
 				available = "Sold Out!"
 			end
 			#talks to Concert class, tells it to create a new concert for each of the concerts on the page
-			Concert.new_concert_from_index_element(url,artist_name,location,date_showtime,available)
+			SfBayAreaConcertsCliApp::Concert.new_concert_from_index_element(url,artist_name,location,date_showtime,available)
 		end
 
 	end

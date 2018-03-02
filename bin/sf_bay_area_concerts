@@ -2,7 +2,7 @@
 
 
 
-require_relative "../config/environment.rb"
+#require_relative "../config/environment.rb"
+require_relative "../lib/sf_bay_area_concerts_cli_app"
 
-
-CLI.new.start
+SfBayAreaConcertsCliApp::CLI.new.start

@@ -1,9 +1,9 @@
-class CLI
+class SfBayAreaConcertsCliApp::CLI
 
 	def start
 
 		puts "Here are the concerts in the Bay Area by Ape Concerts:"
-		Scraper.new.scrape_concert_attributes 
+		SfBayAreaConcertsCliApp::Scraper.new.scrape_concert_attributes 
 		display_all_concerts
 
 
@@ -14,14 +14,14 @@ class CLI
 		  input = gets.strip.to_i
 		end
 
-		concert = Concert.all[input-1]
+		concert = SfBayAreaConcertsCliApp::Concert.all[input-1]
 		concert.add_additional_attributes
 		display_individual_concert_info(concert)
 
 	end
 
 	def display_all_concerts
-		Concert.all.each.with_index(1) do |concert,index|
+		SfBayAreaConcertsCliApp::Concert.all.each.with_index(1) do |concert,index|
 			puts "#{index}.  #{concert.artist_name} is playing at #{concert.location} on #{concert.date_showtime}. #{concert.available.upcase}"
 		end
 	end
@@ -82,3 +82,8 @@ class CLI
 
 
 end
+
+
+
+
+
