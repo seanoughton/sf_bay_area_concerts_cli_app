@@ -42,7 +42,7 @@ class SfBayAreaConcertsCliApp::Scraper
 		ticket_price = doc.css(".more-information p").text.match(/\$\d\d\.+\d+/)
 
 		#the if statements below check to see if the item returned from a scrape is a nokorgiri object
-		#this is here to prevent getting errors from returning nil from scraping
+		#this is to prevent getting errors from returning nil from scraping
 		
 		if (doc.css(".bio p")).inspect != "[]"
 			bio = doc.css(".bio p")[0..-1].text
@@ -77,18 +77,15 @@ class SfBayAreaConcertsCliApp::Scraper
 		if (doc.css(".more-information.social-icons #youtube")).inspect != "[]"
 			youtube = doc.css(".more-information.social-icons #youtube")[0]['href']
 		end
+
+		#if (doc.css(".event-data a")).inspect != "[]"
+			buy_tickets_link = doc.css(".event-data a")[0]['href']
+		#end
 		
-		
 
-
-		concert_attributes = [ticket_price,bio,artist_website,where_to_find_music,facebook,twitter,instagram,youtube]
-
+		concert_attributes = [ticket_price,bio,artist_website,where_to_find_music,facebook,twitter,instagram,youtube,buy_tickets_link]
 
 	end
-
-
-
-
 
 
 end

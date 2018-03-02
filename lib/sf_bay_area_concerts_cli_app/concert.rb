@@ -1,7 +1,7 @@
 class SfBayAreaConcertsCliApp::Concert
 
 	#creates all of the readers/writers for the attributes
-	attr_accessor :url, :artist_name, :location, :date_showtime, :available, :ticket_price, :bio, :artist_website, :where_to_find_music, :facebook, :twitter, :instagram, :youtube
+	attr_accessor :url, :artist_name, :location, :date_showtime, :available, :ticket_price, :bio, :artist_website, :where_to_find_music, :facebook, :twitter, :instagram, :youtube, :buy_tickets_link
 
 	#array for all concert instances
 	@@all = []
@@ -44,6 +44,7 @@ class SfBayAreaConcertsCliApp::Concert
 		self.twitter = attribute_array[5]
 		self.instagram = attribute_array[6]
 		self.youtube = attribute_array[7]
+		self.buy_tickets_link = attribute_array[8]
 		
 	end
 

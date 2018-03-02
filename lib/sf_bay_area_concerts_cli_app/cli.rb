@@ -45,13 +45,23 @@ class SfBayAreaConcertsCliApp::CLI
 		input
 	end
 
+
+	def concert_sold_out?(concert)
+		if concert.available == "Sold Out!"
+			true
+		else
+			false
+		end
+
+	end
+
 	#displays the concert and artist info for a specific concert
 	def display_individual_concert_info(concert)
 		puts ""
 		puts "----------------------------------------------------------------------------------------------------"
 		puts "#{concert.artist_name} will be at #{concert.location} on #{concert.date_showtime}"
 
-		if concert.available == "Sold Out!"
+		if concert_sold_out?(concert)
 			puts "Tickets are Sold Out!"
 		else
 			puts "Tickets are available starting at #{concert.ticket_price}"
@@ -66,20 +76,15 @@ class SfBayAreaConcertsCliApp::CLI
 		puts "facebook : #{concert.facebook}" if concert.facebook
 		puts "twitter: #{concert.twitter}" if concert.twitter 
 		puts "instagram: #{concert.instagram}" if concert.instagram 
+		puts "buy tickets here: #{concert.buy_tickets_link}" if concert.buy_tickets_link != "#!"
 		puts "----------------------------------------------------------------------------------------------------"
 		puts ""
 
-		#asks the user if they want to read the artist bio
-		#this is a separate action, because some of the bio's are really long and the user may not want to read them
-		if concert.bio 
-			puts "Do you want to read #{concert.artist_name}'s bio (y/n)?"
+		if !concert_sold_out?(concert)
+			puts "Would you like to buy tickets (y/n)?"
 			input = gets.strip.downcase
 			if check_y_or_n(input) == "y"
-				puts ""
-				puts "----------------------------------------------------------------------------------------------------"
-				puts "#{concert.bio}"
-				puts "----------------------------------------------------------------------------------------------------"
-				puts ""
+				`open #{concert.buy_tickets_link}}`
 			end
 		end
 
