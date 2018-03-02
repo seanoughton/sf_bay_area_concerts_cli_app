@@ -1,8 +1,6 @@
 #!/usr/bin/env ruby
 
 
-
-#require_relative "../config/environment.rb"
 require_relative "../lib/sf_bay_area_concerts_cli_app"
 
 SfBayAreaConcertsCliApp::CLI.new.start
