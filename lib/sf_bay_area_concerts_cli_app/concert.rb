@@ -28,7 +28,7 @@ class SfBayAreaConcertsCliApp::Concert
 	end
 ##
 	def add_additional_attributes
-		doc = SfBayAreaConcertsCliApp:Scraper.scrape_specific_concert(self.url)
+		doc = SfBayAreaConcertsCliApp::Scraper.scrape_specific_concert(self.url)
 
 		self.ticket_price = doc.css(".more-information p").text.match(/\$\d\d\.+\d+/)
 
