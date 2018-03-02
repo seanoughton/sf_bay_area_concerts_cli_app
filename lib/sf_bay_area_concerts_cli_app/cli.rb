@@ -10,6 +10,13 @@ class SfBayAreaConcertsCliApp::CLI
 
 		#displays all of the concerts
 		display_all_concerts
+	end
+
+	#this displays the list of all concerts
+	def display_all_concerts
+		SfBayAreaConcertsCliApp::Concert.all.each.with_index(1) do |concert,index|
+			puts "#{index}.  #{concert.artist_name} is playing at #{concert.location} on #{concert.date_showtime}. #{concert.available.upcase}"
+		end
 
 		#user interaction - asks the user which concert they want to know about and gets input
 		puts "Which concert would you like more information about?"
@@ -26,13 +33,8 @@ class SfBayAreaConcertsCliApp::CLI
 		#this displays the information about the individual concert
 		display_individual_concert_info(concert)
 
-	end
 
-	#this displays the list of all concerts
-	def display_all_concerts
-		SfBayAreaConcertsCliApp::Concert.all.each.with_index(1) do |concert,index|
-			puts "#{index}.  #{concert.artist_name} is playing at #{concert.location} on #{concert.date_showtime}. #{concert.available.upcase}"
-		end
+
 	end
 
 
@@ -63,20 +65,27 @@ class SfBayAreaConcertsCliApp::CLI
 
 		if concert_sold_out?(concert)
 			puts "Tickets are Sold Out!"
+		elsif concert.ticket_price == nil
+			puts "Tickets are free!"
 		else
 			puts "Tickets are available starting at #{concert.ticket_price}"
 		end
 
 		puts "----------------------------------------------------------------------------------------------------"
 		puts "Here is some more information about this artist:"
-		puts "You can find out more about this artist here: #{concert.artist_website}" if concert.artist_website
-		puts "You can find this artist's music here: #{concert.where_to_find_music}" if concert.where_to_find_music
-		puts "You can watch music videos here: #{concert.youtube}" if concert.youtube
-		puts "Here are #{concert.artist_name}'s social links:"
-		puts "facebook : #{concert.facebook}" if concert.facebook
-		puts "twitter: #{concert.twitter}" if concert.twitter 
-		puts "instagram: #{concert.instagram}" if concert.instagram 
-		puts "buy tickets here: #{concert.buy_tickets_link}" if concert.buy_tickets_link != "#!"
+		puts "Artit's website: #{concert.artist_website}" if concert.artist_website
+		puts "Buy the artist's music here: #{concert.where_to_find_music}" if concert.where_to_find_music
+		puts "Watch music videos here: #{concert.youtube}" if concert.youtube
+		#puts "Buy tickets here: #{concert.buy_tickets_link}" if concert.buy_tickets_link != "#!"
+		if concert.facebook || concert.twitter || concert.instagram
+			puts ""
+			puts "Social links:"
+			puts "facebook : #{concert.facebook}" if concert.facebook
+			puts "twitter: #{concert.twitter}" if concert.twitter 
+			puts "instagram: #{concert.instagram}" if concert.instagram 
+		end
+
+
 		puts "----------------------------------------------------------------------------------------------------"
 		puts ""
 
@@ -95,7 +104,7 @@ class SfBayAreaConcertsCliApp::CLI
 		
 
 		if check_y_or_n(input)== "y"
-			start
+			display_all_concerts
 		else
 			puts "Thanks.  Good-bye!"
 		end

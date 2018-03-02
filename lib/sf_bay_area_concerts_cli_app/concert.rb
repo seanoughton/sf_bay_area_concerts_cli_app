@@ -27,9 +27,6 @@ class SfBayAreaConcertsCliApp::Concert
 	end
 
 
-	
-
-
 	#adds the specific attributes for each concert once the user has selected that concert
 	def add_additional_attributes
 
