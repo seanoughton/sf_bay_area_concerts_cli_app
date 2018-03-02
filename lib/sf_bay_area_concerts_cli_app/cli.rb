@@ -50,7 +50,7 @@ class SfBayAreaConcertsCliApp::CLI
 		puts ""
 		puts "----------------------------------------------------------------------------------------------------"
 		puts "#{concert.artist_name} will be at #{concert.location} on #{concert.date_showtime}"
-		puts "Tickets are available for #{concert.ticket_price}"
+
 		if concert.available == "Sold Out!"
 			puts "Tickets are Sold Out!"
 		else

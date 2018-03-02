@@ -38,7 +38,56 @@ class SfBayAreaConcertsCliApp::Scraper
 	#this scrapes the url of a specific concert 
 	def self.scrape_specific_concert(url)
 		doc = Nokogiri::HTML(open("#{url}"))	
+
+		ticket_price = doc.css(".more-information p").text.match(/\$\d\d\.+\d+/)
+
+		#the if statements below check to see if the item returned from a scrape is a nokorgiri object
+		#this is here to prevent getting errors from returning nil from scraping
+		
+		if (doc.css(".bio p")).inspect != "[]"
+			bio = doc.css(".bio p")[0..-1].text
+		end
+
+
+		if (doc.css(".more-information.social-icons #website")).inspect != "[]"		
+			artist_website = doc.css(".more-information.social-icons #website")[0]['href']
+		end
+
+	
+		if (doc.css(".more-information.social-icons #music")).inspect != "[]"
+			where_to_find_music = doc.css(".more-information.social-icons #music")[0]['href']
+		end
+	
+
+		if (doc.css(".more-information.social-icons #facebook")).inspect != "[]"
+			facebook = doc.css(".more-information.social-icons #facebook")[0]['href']
+		end
+
+
+		if (doc.css(".more-information.social-icons #twitter")).inspect != "[]"
+			twitter = doc.css(".more-information.social-icons #twitter")[0]['href']
+		end
+
+
+		if (doc.css(".more-information.social-icons #instagram")).inspect != "[]"
+			instagram = doc.css(".more-information.social-icons #instagram")[0]['href']
+		end
+
+
+		if (doc.css(".more-information.social-icons #youtube")).inspect != "[]"
+			youtube = doc.css(".more-information.social-icons #youtube")[0]['href']
+		end
+		
+		
+
+
+		concert_attributes = [ticket_price,bio,artist_website,where_to_find_music,facebook,twitter,instagram,youtube]
+
+
 	end
+
+
+
 
 
 
