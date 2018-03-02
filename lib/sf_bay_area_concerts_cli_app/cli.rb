@@ -3,7 +3,10 @@ class SfBayAreaConcertsCliApp::CLI
 	#starts the app and initiates user interaction
 	def start
 
+		puts ""
+		puts ""	
 		puts "Here are the concerts in the Bay Area by Ape Concerts:"
+
 		#creates an instance of the Scraper class and calls #scrape_concert_attributes method
 		#this creates concert instances and stores them in a Class Array
 		SfBayAreaConcertsCliApp::Scraper.new.scrape_concert_attributes 
@@ -12,16 +15,17 @@ class SfBayAreaConcertsCliApp::CLI
 		display_all_concerts
 	end
 
-	#this displays the list of all concerts
+
+	#this displays the list of all concerts and asks user which concert they want to know more about
 	def display_all_concerts
 		SfBayAreaConcertsCliApp::Concert.all.each.with_index(1) do |concert,index|
 			puts "#{index}.  #{concert.artist_name} is playing at #{concert.location} on #{concert.date_showtime}. #{concert.available.upcase}"
 		end
 
-		#user interaction - asks the user which concert they want to know about and gets input
+
 		puts "Which concert would you like more information about?"
 		input = 0
-		while input == 0
+		while input == 0 #this makes sure that the user enters in a number
 		  puts "Please enter a number."
 		  input = gets.strip.to_i
 		end
@@ -32,8 +36,6 @@ class SfBayAreaConcertsCliApp::CLI
 
 		#this displays the information about the individual concert
 		display_individual_concert_info(concert)
-
-
 
 	end
 
@@ -47,7 +49,7 @@ class SfBayAreaConcertsCliApp::CLI
 		input
 	end
 
-
+	#checks to see if a concert is sold out
 	def concert_sold_out?(concert)
 		if concert.available == "Sold Out!"
 			true
@@ -76,6 +78,7 @@ class SfBayAreaConcertsCliApp::CLI
 		puts "Artit's website: #{concert.artist_website}" if concert.artist_website
 		puts "Buy the artist's music here: #{concert.where_to_find_music}" if concert.where_to_find_music
 		puts "Watch music videos here: #{concert.youtube}" if concert.youtube
+		
 		#puts "Buy tickets here: #{concert.buy_tickets_link}" if concert.buy_tickets_link != "#!"
 		if concert.facebook || concert.twitter || concert.instagram
 			puts ""
@@ -89,6 +92,7 @@ class SfBayAreaConcertsCliApp::CLI
 		puts "----------------------------------------------------------------------------------------------------"
 		puts ""
 
+		#Asks the user if they would like to buy tickets, if yes it opens the url 
 		if !concert_sold_out?(concert)
 			puts "Would you like to buy tickets (y/n)?"
 			input = gets.strip.downcase

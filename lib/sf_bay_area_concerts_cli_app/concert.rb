@@ -30,9 +30,10 @@ class SfBayAreaConcertsCliApp::Concert
 	#adds the specific attributes for each concert once the user has selected that concert
 	def add_additional_attributes
 
-		#scrapes the url of the specific concert
+		#gets an array of scraped attributes from the Scraper Class method #scrape_specific_concert
 		attribute_array = SfBayAreaConcertsCliApp::Scraper.scrape_specific_concert(self.url)
 	
+		#assigns the attributes to the concert instance based on the array index
 		self.ticket_price = attribute_array[0]
 		self.bio = attribute_array[1]
 		self.artist_website = attribute_array[2]

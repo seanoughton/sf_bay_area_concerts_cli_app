@@ -10,9 +10,10 @@ class SfBayAreaConcertsCliApp::Scraper
 		self.page_retrieval.css("div#ape-event .content-information")
 	end
 
-	#this scrapes the main concerts page for each concert for specific attributes: url, artist_name, location, date, ticket availability
+	#this scrapes the main concerts page and grabs the url, artist_name, location, date, ticket availability for each concert
 	def scrape_concert_attributes
-		concerts = self.scrape_all_concerts #gets all concerts nokogiri objects
+		concerts = self.scrape_all_concerts #calls the #scrape_all_concerts method
+
 		#for each specific concert grab these attributes
 		concerts.each do |concert|
 			url = concert.css(".entry a")[0]['href']
@@ -35,14 +36,14 @@ class SfBayAreaConcertsCliApp::Scraper
 	end
 
 
-	#this scrapes the url of a specific concert 
+	#this scrapes the url of a specific concert and returns an array of attributes
 	def self.scrape_specific_concert(url)
 		doc = Nokogiri::HTML(open("#{url}"))	
 
 		ticket_price = doc.css(".more-information p").text.match(/\$\d\d\.+\d+/)
 
 		#the if statements below check to see if the item returned from a scrape is a nokorgiri object
-		#this is to prevent getting errors from returning nil from scraping
+		#this is to prevent getting errors from returning a nil object from the scrape
 		
 		if (doc.css(".bio p")).inspect != "[]"
 			bio = doc.css(".bio p")[0..-1].text
@@ -78,9 +79,9 @@ class SfBayAreaConcertsCliApp::Scraper
 			youtube = doc.css(".more-information.social-icons #youtube")[0]['href']
 		end
 
-		#if (doc.css(".event-data a")).inspect != "[]"
+		if (doc.css(".event-data a")).inspect != "[]"
 			buy_tickets_link = doc.css(".event-data a")[0]['href']
-		#end
+		end
 		
 
 		concert_attributes = [ticket_price,bio,artist_website,where_to_find_music,facebook,twitter,instagram,youtube,buy_tickets_link]
